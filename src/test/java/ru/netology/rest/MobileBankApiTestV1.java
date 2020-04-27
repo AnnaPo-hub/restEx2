@@ -3,7 +3,7 @@ package ru.netology.rest;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 
 class MobileBankApiTestV1 {
     @Test
@@ -19,7 +19,8 @@ class MobileBankApiTestV1 {
 // Проверки
                 .then()
                 .statusCode(200)
-                .body(containsString("some data"));
-
+                //.body(equalTo("some data"));
+                .body("data",equalTo("some data"))
+                .body("headers.content-type",equalTo("text/plain; charset=ISO-8859-1"));
     }
 }
